@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CyberDay 2026 — Bowie State University</title>
+<style>
+  :root {
+    --ink: #0c1220;
+    --ink-2: #121a2c;
+    --gold: #f2b705;
+    --gold-dim: #c99a1f;
+    --paper: #f5f2e9;
+    --paper-dim: #b9c0d4;
+    --line: rgba(242,183,5,0.25);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: inherit; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Courier New', ui-monospace, Menlo, Consolas, monospace;
+    min-height: 100%;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 3rem;
+    position: relative;
+  }
+
+  .circuit-rule {
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--gold) 0 14px, transparent 14px 22px);
+    opacity: 0.5;
+    margin: 2.2rem 0;
+  }
+
+  header { text-align: center; }
+
+  .eyebrow {
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    margin: 0 0 1rem;
+  }
+
+  h1 {
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 13vw, 5.5rem);
+    line-height: 0.9;
+    margin: 0;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+  }
+  h1 span {
+    display: block;
+    color: var(--gold);
+    font-size: 0.42em;
+    margin-top: 0.15em;
+  }
+
+  .tagline {
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    color: var(--gold);
+    font-size: clamp(1.1rem, 4vw, 1.6rem);
+    margin: 1.4rem 0 0;
+    font-weight: 800;
+  }
+
+  .when-where {
+    margin-top: 2.4rem;
+  }
+  .date {
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+  .time {
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    color: var(--paper-dim);
+    margin: 0.3rem 0 0;
+    font-weight: 700;
+  }
+  .location {
+    color: var(--gold);
+    font-weight: 700;
+    margin: 0.8rem 0 0;
+    font-size: 1rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+    margin-top: 1rem;
+  }
+  @media (min-width: 620px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .block-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--gold-dim);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.6rem;
+    margin: 0 0 1.1rem;
+  }
+
+  .speaker-photo {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .speaker-name {
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-size: 1.25rem;
+    margin: 0 0 0.3rem;
+  }
+  .speaker-role {
+    color: var(--paper-dim);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .cft-copy {
+    color: var(--paper-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .contacts {
+    margin-top: 2.6rem;
+    text-align: center;
+  }
+  .contacts-label {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0 0 1.6rem;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+    text-align: left;
+  }
+  @media (min-width: 620px) {
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .contact-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0 0 0.2rem;
+  }
+  .contact-role, .contact-detail {
+    color: var(--paper-dim);
+    font-size: 0.9rem;
+    margin: 0.15rem 0 0;
+    line-height: 1.5;
+  }
+  .contact-detail a { color: var(--paper-dim); text-decoration: none; }
+  .contact-detail a:hover, .contact-detail a:focus-visible { color: var(--gold); }
+
+  footer {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .school {
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: 0.15em;
+    font-size: 1.1rem;
+    color: var(--paper);
+  }
+  .school small {
+    display: block;
+    letter-spacing: 0.3em;
+    color: var(--paper-dim);
+    font-size: 0.6rem;
+    margin-top: 0.3rem;
+  }
+
+  .agenda-scroll {
+    overflow-x: auto;
+  }
+  table.agenda {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    min-width: 520px;
+  }
+  table.agenda th {
+    text-align: left;
+    color: var(--gold-dim);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-size: 0.75rem;
+    padding: 0 0.8rem 0.7rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  table.agenda td {
+    padding: 0.75rem 0.8rem 0.75rem 0;
+    border-bottom: 1px solid rgba(242,183,5,0.12);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  table.agenda tr:last-child td { border-bottom: none; }
+  table.agenda td:first-child {
+    color: var(--gold);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  table.agenda td:last-child {
+    color: var(--paper-dim);
+  }
+
+  .img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--ink-2);
+    border: 1.5px dashed var(--gold-dim);
+    color: var(--paper-dim);
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    padding: 0.5rem;
+  }
+  .speaker-photo-placeholder {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  .logo-placeholder {
+    width: 120px;
+    height: 60px;
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .wrap { animation: rise 0.5s ease-out; }
+    @keyframes rise { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">BOWIE STATE UNIVERSITY PRESENTS</p>
+      <h1>CYBERDAY<span>2026</span></h1>
+      <p class="tagline">Deep defend: Hack. Defend. Innovate.</p>
+
+      <div class="when-where">
+        <p class="date">13th October</p>
+        <p class="time">9:00 AM – 12:30 PM</p>
+        <p class="location">Martin Luther King Jr. Building, Room 1330</p>
+      </div>
+    </header>
+
+    <div class="circuit-rule"></div>
+
+    <div class="grid">
+      <section>
+        <p class="block-label">KEYNOTE SPEAKER</p>
+        <!-- TODO: replace with <img class="speaker-photo" src="YOUR-IMAGE-URL" alt="Ashley Jones"> -->
+        <div class="img-placeholder speaker-photo-placeholder">Speaker photo</div>
+        <p class="speaker-name">Ashley Jones</p>
+        <p class="speaker-role">Cybersecurity Advisor for<br>Washington D.C. — Region III</p>
+      </section>
+
+      <section>
+        <p class="block-label">RESEARCH POSTERS / CAPTURE THE FLAG</p>
+        <p class="cft-copy">Participants will put their cybersecurity knowledge and problem-solving skills to the test. Whether you're new to cybersecurity or an experienced competitor, this event offers a fun and engaging opportunity to learn, collaborate, and compete.</p>
+      </section>
+    </div>
+
+    <div class="circuit-rule"></div>
+
+    <section>
+      <p class="block-label">AGENDA</p>
+      <div class="agenda-scroll">
+        <table class="agenda">
+          <thead>
+            <tr><th>Time</th><th>Activity</th><th>Presenter/Moderator</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>9:00 – 9:05 AM</td><td>Welcome and introduction of the Provost and Dean</td><td>Dr. Shumba</td></tr>
+            <tr><td>9:05 – 9:10 AM</td><td>Opening remarks</td><td>Dr. Amoussou</td></tr>
+            <tr><td>9:10 – 9:15 AM</td><td>Welcome remarks</td><td>Dr. Damo</td></tr>
+            <tr><td>9:15 – 9:20 AM</td><td>Introduction of keynote speaker</td><td>Dr. Shumba</td></tr>
+            <tr><td>9:20 – 10:00 AM</td><td>Keynote speaker</td><td>Ms. Ashley Jones</td></tr>
+            <tr><td>10:00 – 11:00 AM</td><td>Jeopardy-style hackathon</td><td>Moderators: Dr. Dali and Dr. Agada</td></tr>
+            <tr><td>11:00 – 11:30 AM</td><td>Cybersecurity and AI poster presentations by SFS and SURI students</td><td>Students</td></tr>
+            <tr><td>11:30 AM – 12:30 PM</td><td>Meet and greet + eat</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="circuit-rule"></div>
+
+    <div class="contacts">
+      <p class="contacts-label">For more information, please contact</p>
+      <div class="contact-grid">
+        <div>
+          <p class="contact-name">Dr. Rose Shumba</p>
+          <p class="contact-role">Chair, Department of Computer Science</p>
+          <p class="contact-detail"><a href="mailto:rshumba@bowiestate.edu">rshumba@bowiestate.edu</a></p>
+          <p class="contact-detail">301-860-4446</p>
+        </div>
+        <div>
+          <p class="contact-name">Dr. Jie Yan</p>
+          <p class="contact-role">Faculty Lead, Center for Cybersecurity &amp; Emerging Technologies</p>
+          <p class="contact-detail"><a href="mailto:jyan@bowiestate.edu">jyan@bowiestate.edu</a></p>
+          <p class="contact-detail">301-860-3966</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <!-- TODO: replace with <img class="logo-placeholder" src="YOUR-LOGO-URL" alt="Bowie State University"> -->
+      <!--<div class="img-placeholder logo-placeholder">Bowie State logo</div>-->
+      <img class = "img-placeholder logo-placeholder" src="logo_yellow_black_white.png" 
+      alt="Bowie State University logo"></img>
+      <p class="school">BOWIE<br><small>STATE UNIVERSITY · 1865</small></p>
+    </footer>
+  </div>
+</body>
+</html>
